@@ -1,0 +1,389 @@
+==80516== Memcheck, a memory error detector
+==80516== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==80516== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==80516== Command: ./Game
+==80516== 
+==80516== Syscall param msg->desc.port.name points to uninitialised byte(s)
+==80516==    at 0x103DD134A: mach_msg_trap (in /usr/lib/system/libsystem_kernel.dylib)
+==80516==    by 0x103DD0796: mach_msg (in /usr/lib/system/libsystem_kernel.dylib)
+==80516==    by 0x103DCA485: task_set_special_port (in /usr/lib/system/libsystem_kernel.dylib)
+==80516==    by 0x103F6610E: _os_trace_create_debug_control_port (in /usr/lib/system/libsystem_trace.dylib)
+==80516==    by 0x103F66458: _libtrace_init (in /usr/lib/system/libsystem_trace.dylib)
+==80516==    by 0x1002739DF: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==80516==    by 0x100046A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100041523: ImageLoader::processInitializers(ImageLoader::LinkContext const&, unsigned int, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x1000415B8: ImageLoader::runInitializers(ImageLoader::LinkContext const&, ImageLoader::InitializerTimingList&) (in /usr/lib/dyld)
+==80516==  Address 0x1048b845c is on thread 1's stack
+==80516==  in frame #2, created by task_set_special_port (???:)
+==80516== 
+--80516-- UNKNOWN mach_msg unhandled MACH_SEND_TRAILER option
+--80516-- UNKNOWN mach_msg unhandled MACH_SEND_TRAILER option (repeated 2 times)
+--80516-- UNKNOWN mach_msg unhandled MACH_SEND_TRAILER option (repeated 4 times)
+UNKNOWN workq_ops option 128
+==80516== valgrind: Unrecognised instruction at address 0x103bbdb50.
+==80516==    at 0x103BBDB50: _dispatch_kq_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBB8FB: _dispatch_client_callout (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBB8B8: dispatch_once_f (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBDA90: _dispatch_kq_update (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBF0CD: _dispatch_kevent_resume (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBF03D: _dispatch_source_kevent_resume (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBEE85: _dispatch_source_kevent_register (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BCE651: _dispatch_queue_resume_finalize_activation (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103F0E3C0: _notify_lib_init (in /usr/lib/system/libsystem_notify.dylib)
+==80516==    by 0x103F0E9AB: notify_register_dispatch (in /usr/lib/system/libsystem_notify.dylib)
+==80516==    by 0x1026D7916: CFUniCharMapTo (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x103BBB8FB: _dispatch_client_callout (in /usr/lib/system/libdispatch.dylib)
+==80516== Your program just tried to execute an instruction that Valgrind
+==80516== did not recognise.  There are two possible reasons for this.
+==80516== 1. Your program has a bug and erroneously jumped to a non-code
+==80516==    location.  If you are running Memcheck and you just saw a
+==80516==    warning about a bad jump, it's probably your program's fault.
+==80516== 2. The instruction is legitimate but Valgrind doesn't handle it,
+==80516==    i.e. it's Valgrind's fault.  If you think this is the case or
+==80516==    you are not sure, please let us know and we'll try to fix it.
+==80516== Either way, Valgrind will now raise a SIGILL signal which will
+==80516== probably kill your program.
+==80516== 
+==80516== Process terminating with default action of signal 4 (SIGILL)
+==80516==  Illegal opcode at address 0x103BBDB50
+==80516==    at 0x103BBDB50: _dispatch_kq_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBB8FB: _dispatch_client_callout (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBB8B8: dispatch_once_f (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBDA90: _dispatch_kq_update (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBF0CD: _dispatch_kevent_resume (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBF03D: _dispatch_source_kevent_resume (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBEE85: _dispatch_source_kevent_register (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BCE651: _dispatch_queue_resume_finalize_activation (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103F0E3C0: _notify_lib_init (in /usr/lib/system/libsystem_notify.dylib)
+==80516==    by 0x103F0E9AB: notify_register_dispatch (in /usr/lib/system/libsystem_notify.dylib)
+==80516==    by 0x1026D7916: CFUniCharMapTo (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x103BBB8FB: _dispatch_client_callout (in /usr/lib/system/libdispatch.dylib)
+==80516== 
+==80516== HEAP SUMMARY:
+==80516==     in use at exit: 1,280,931 bytes in 951 blocks
+==80516==   total heap usage: 1,993 allocs, 1,042 frees, 2,462,230 bytes allocated
+==80516== 
+==80516== 64 bytes in 1 blocks are possibly lost in loss record 180 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E8BD: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 64 bytes in 1 blocks are possibly lost in loss record 181 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E8E0: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 64 bytes in 1 blocks are possibly lost in loss record 182 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038426C: _class_getNonMetaClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100384052: lookUpImpOrForward (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100383AD3: _objc_msgSend_stret_uncached (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10257408E: +[__NSArrayI __new:::] (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x10256EF28: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 64 bytes in 1 blocks are possibly lost in loss record 183 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103439B40: _NSToDoAtProcessStart (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x10343994C: _NSInitializePlatform (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x100385C42: call_load_methods (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382DC9: load_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100033071: dyld::notifySingle(dyld_image_states, ImageLoader const*, ImageLoader::InitializerTimingList*) (in /usr/lib/dyld)
+==80516==    by 0x100042497: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 64 bytes in 1 blocks are possibly lost in loss record 184 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103439B40: _NSToDoAtProcessStart (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x10343994C: _NSInitializePlatform (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x100385C42: call_load_methods (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382DC9: load_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100033071: dyld::notifySingle(dyld_image_states, ImageLoader const*, ImageLoader::InitializerTimingList*) (in /usr/lib/dyld)
+==80516==    by 0x100042497: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 64 bytes in 1 blocks are possibly lost in loss record 185 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038426C: _class_getNonMetaClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100384052: lookUpImpOrForward (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100383AD3: _objc_msgSend_stret_uncached (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x102759F7F: _NSSharedKeySet_r (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x1026D803E: CFUniCharDecomposeWithErrorLocation (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x102759EBF: _NSSharedKeySet_r (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x1025A18BC: __CFStringAppendFormatCore (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x102725D45: -[__NSPlaceholderOrderedSet replaceObjectAtIndex:withObject:] (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x10272710E: -[NSOrderedSet indexesOfObjectsAtIndexes:options:passingTest:] (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516== 
+==80516== 64 bytes in 2 blocks are possibly lost in loss record 186 of 324
+==80516==    at 0x1000C6FC4: realloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100381A4A: list_array_tt<unsigned long, protocol_list_t>::attachLists(protocol_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382530: list_array_tt<property_t, property_list_t>::attachLists(property_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382843: flushCaches(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037F448: _read_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037DA29: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100390FE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10003603B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==80516==    by 0x100036255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==80516==    by 0x103C2800A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==80516==    by 0x10037D074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103BBB68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==80516== 
+==80516== 88 bytes in 1 blocks are possibly lost in loss record 215 of 324
+==80516==    at 0x1000C6FC4: realloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x1003825B0: list_array_tt<property_t, property_list_t>::attachLists(property_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382511: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382843: flushCaches(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037F448: _read_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037DA29: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100390FE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10003603B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==80516==    by 0x100036255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==80516==    by 0x103C2800A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==80516==    by 0x10037D074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103BBB68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==80516== 
+==80516== 96 bytes in 4 blocks are possibly lost in loss record 218 of 324
+==80516==    at 0x1000C6616: malloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100381AA5: list_array_tt<unsigned long, protocol_list_t>::attachLists(protocol_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382530: list_array_tt<property_t, property_list_t>::attachLists(property_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003811FF: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C6E: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103439B40: _NSToDoAtProcessStart (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x10343994C: _NSInitializePlatform (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x100385C42: call_load_methods (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382DC9: load_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100033071: dyld::notifySingle(dyld_image_states, ImageLoader const*, ImageLoader::InitializerTimingList*) (in /usr/lib/dyld)
+==80516== 
+==80516== 128 bytes in 2 blocks are possibly lost in loss record 238 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E8BD: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 144 bytes in 6 blocks are possibly lost in loss record 243 of 324
+==80516==    at 0x1000C6616: malloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100381AA5: list_array_tt<unsigned long, protocol_list_t>::attachLists(protocol_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382530: list_array_tt<property_t, property_list_t>::attachLists(property_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003811FF: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C6E: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E877: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 160 bytes in 6 blocks are possibly lost in loss record 253 of 324
+==80516==    at 0x1000C6616: malloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x10038260B: list_array_tt<property_t, property_list_t>::attachLists(property_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382511: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003811FF: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E8BD: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 192 bytes in 1 blocks are possibly lost in loss record 258 of 324
+==80516==    at 0x1000C6FC4: realloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100381942: list_array_tt<method_t, method_list_t>::attachLists(method_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003824DB: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382843: flushCaches(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037F4D4: _read_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037DA29: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100390FE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10003603B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==80516==    by 0x100036255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==80516==    by 0x103C2800A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==80516==    by 0x10037D074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103BBB68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==80516== 
+==80516== 264 bytes in 4 blocks are possibly lost in loss record 263 of 324
+==80516==    at 0x1000C6616: malloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x10038199D: list_array_tt<method_t, method_list_t>::attachLists(method_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003824DB: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003811FF: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C6E: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E8BD: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516== 
+==80516== 328 bytes in 6 blocks are possibly lost in loss record 269 of 324
+==80516==    at 0x1000C6616: malloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x10038199D: list_array_tt<method_t, method_list_t>::attachLists(method_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003824DB: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003811FF: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C6E: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E877: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x1000424A9: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 408 bytes in 9 blocks are possibly lost in loss record 278 of 324
+==80516==    at 0x1000C6FC4: realloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100382783: addUnattachedCategoryForClass(category_t*, objc_class*, header_info*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037F4BC: _read_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037DA29: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100390FE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10003603B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==80516==    by 0x100036255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==80516==    by 0x103C2800A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==80516==    by 0x10037D074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103BBB68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBB63A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x1002739D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==80516== 
+==80516== 528 bytes in 1 blocks are possibly lost in loss record 289 of 324
+==80516==    at 0x1000C6FC4: realloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100381942: list_array_tt<method_t, method_list_t>::attachLists(method_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003824DB: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382843: flushCaches(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037F448: _read_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037DA29: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100390FE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10003603B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==80516==    by 0x100036255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==80516==    by 0x103C2800A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==80516==    by 0x10037D074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103BBB68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==80516== 
+==80516== 744 bytes in 14 blocks are possibly lost in loss record 302 of 324
+==80516==    at 0x1000C6616: malloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x10038199D: list_array_tt<method_t, method_list_t>::attachLists(method_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003824DB: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003811FF: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103439B40: _NSToDoAtProcessStart (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x10343994C: _NSInitializePlatform (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x100385C42: call_load_methods (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382DC9: load_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100033071: dyld::notifySingle(dyld_image_states, ImageLoader const*, ImageLoader::InitializerTimingList*) (in /usr/lib/dyld)
+==80516==    by 0x100042497: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 832 bytes in 13 blocks are possibly lost in loss record 306 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100380BA0: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038426C: _class_getNonMetaClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100384052: lookUpImpOrForward (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100383AD3: _objc_msgSend_stret_uncached (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103439E2F: _NSToDoAtProcessStart (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x10343994C: _NSInitializePlatform (in /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation)
+==80516==    by 0x100385C42: call_load_methods (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100382DC9: load_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100033071: dyld::notifySingle(dyld_image_states, ImageLoader const*, ImageLoader::InitializerTimingList*) (in /usr/lib/dyld)
+==80516==    by 0x100042497: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516==    by 0x100042440: ImageLoader::recursiveInitialization(ImageLoader::LinkContext const&, unsigned int, char const*, ImageLoader::InitializerTimingList&, ImageLoader::UninitedUpwards&) (in /usr/lib/dyld)
+==80516== 
+==80516== 992 bytes in 16 blocks are possibly lost in loss record 308 of 324
+==80516==    at 0x1000C6616: malloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x10038199D: list_array_tt<method_t, method_list_t>::attachLists(method_list_t* const*, unsigned int) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003824DB: attachCategories(objc_class*, locstamped_category_list_t*, bool) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x1003811FF: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C6E: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100380C4D: realizeClass(objc_class*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10038672D: getClass_impl(char const*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100386AF2: object_setClass (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10256E8E0: __CFInitialize (in /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation)
+==80516==    by 0x100046846: ImageLoaderMachO::doImageInit(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C12: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516== 
+==80516== 1,656 bytes in 27 blocks are possibly lost in loss record 313 of 324
+==80516==    at 0x1000C6FC4: realloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x100382783: addUnattachedCategoryForClass(category_t*, objc_class*, header_info*) (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037F422: _read_images (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10037DA29: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100390FE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10003603B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==80516==    by 0x100036255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==80516==    by 0x103C2800A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==80516==    by 0x10037D074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103BBB68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBB63A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x1002739D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==80516== 
+==80516== 1,704 bytes in 71 blocks are possibly lost in loss record 314 of 324
+==80516==    at 0x1000C6C7A: calloc (in /usr/local/Cellar/valgrind/3.13.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==80516==    by 0x10037D846: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x100390FE8: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x10003603B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==80516==    by 0x100036255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==80516==    by 0x103C2800A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==80516==    by 0x10037D074: _objc_init (in /usr/lib/libobjc.A.dylib)
+==80516==    by 0x103BBB68D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x103BBB63A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==80516==    by 0x1002739D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==80516==    by 0x100046A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516==    by 0x100046C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==80516== 
+==80516== LEAK SUMMARY:
+==80516==    definitely lost: 0 bytes in 0 blocks
+==80516==    indirectly lost: 0 bytes in 0 blocks
+==80516==      possibly lost: 8,712 bytes in 189 blocks
+==80516==    still reachable: 47,632 bytes in 442 blocks
+==80516==         suppressed: 1,224,587 bytes in 320 blocks
+==80516== Reachable blocks (those to which a pointer was found) are not shown.
+==80516== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==80516== 
+==80516== For counts of detected and suppressed errors, rerun with: -v
+==80516== Use --track-origins=yes to see where uninitialised values come from
+==80516== ERROR SUMMARY: 23 errors from 23 contexts (suppressed: 25 from 13)
+Illegal instruction: 4
