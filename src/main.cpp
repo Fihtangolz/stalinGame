@@ -58,7 +58,7 @@ for (auto &i:rTbl)
 	SDL_RenderCopy(G.ren, Message, NULL, &Message_rect);
 	p++;
 }
-}//test
+}//test git
 
 int main(int argc, char *argv[]) {
 	game G;
