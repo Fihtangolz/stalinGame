@@ -84,13 +84,13 @@ int main(int argc, char *argv[]) {
 
     bomb.onAnotherObjEnterOnCell=[&gameOver](gameObject &obj)
 	{
-		if (obj.type == heroT)
+		if (obj.GType == heroT)
 		{
 			gameOver = true;
 		}
 	};
 	clock.onAnotherObjEnterOnCell=[&tick](gameObject &obj){
-		if (obj.type == heroT)
+		if (obj.GType == heroT)
 		{
 			tick += 10 * 100;
 		}
