@@ -1,6 +1,5 @@
 #include <iostream>
 #include "keyboardHandler.hpp"
-#include "gameObject.hpp"
 
 void keyboardHandler::pollEvent() {
       if (SDL_PollEvent(&event)) {
@@ -17,6 +16,9 @@ void keyboardHandler::pollEvent() {
                       break;
                   case SDL_SCANCODE_D:
                       delegate->moveOdj(delegateWASDControll::RIGHT);
+                      break;
+                  case 40: //in mac it is enter
+                      delegate->moveOdj(delegateWASDControll::ENTER);
                       break;
               }
           }

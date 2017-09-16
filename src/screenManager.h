@@ -62,14 +62,14 @@ public:
             case UP:
                 if(it!=K.end()){
                     it->unselect(*it);
-                    ++it;
+                    --it;
                     it->select(*it);
                 }
                 break;
             case DOWN:
                 if(it!=K.begin()) {
                     it->unselect(*it);
-                    --it;
+                    ++it;
                     it->select(*it);
                 }
                 break;
@@ -93,7 +93,7 @@ public:
                          {150,260,100,80},
                          [](button& i){i.Color = {100, 240, 100, 240};},
                          [](button& i){i.Color = {255, 255, 255, 255};},
-                         [](button& i){std::cout<<"exit press"<<std::endl;}),
+                         [](button& i){std::exit(EXIT_SUCCESS);}),
                chooseLvl("Choose Lvl",
                          {150,100,100,80},
                          [](button& i){i.Color = {100, 240, 100, 240};},
