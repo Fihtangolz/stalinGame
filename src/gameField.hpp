@@ -6,7 +6,6 @@
 #include <vector>
 #include "gameObject.hpp"
 
-enum direction { DOWN, UP, RIGHT, LEFT };
 class gameField {
 private:
     struct {
@@ -15,10 +14,12 @@ private:
     }gridDimensions;
     const int tileSize = 40;
 
-    gameObject *field[10][10] = {{nullptr}};
+    gameObject *field[10][10] = {{0}};
 
     std::vector<gameObject*> generationPool;
 public:
+    enum direction{DOWN, UP, RIGHT, LEFT};
+
     SDL_Renderer *ren;
     SDL_Texture *ground;
     void createMessageOnTopBar( std::string message);
@@ -26,7 +27,7 @@ public:
     void moveOdj(gameObject *obj, direction f);
     void generateObjectsOnMap();
     void addObjToGenerationPool(gameObject *obj);
-    void placeObj(gameObject *obj,const int &x,const int &y);
+    void placeObj(gameObject &obj, const int &x, const int &y);
 };
 
 #endif // __GAMEFIELD_H__

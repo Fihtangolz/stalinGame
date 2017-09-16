@@ -6,7 +6,9 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL_rect.h>
 #include <array>
+#include <iostream>
 #include "game.hpp"
+#include "keyboardHandler.hpp"
 
 extern game G;
 
@@ -58,14 +60,18 @@ public:
     void moveOdj(const direction f) { //TODO rename
         switch(f){
             case UP:
-                it->unselect(*it);
-                ++it;
-                it->select(*it);
+                if(it!=K.end()){
+                    it->unselect(*it);
+                    ++it;
+                    it->select(*it);
+                }
                 break;
             case DOWN:
-                it->unselect(*it);
-                --it;
-                it->select(*it);
+                if(it!=K.begin()) {
+                    it->unselect(*it);
+                    --it;
+                    it->select(*it);
+                }
                 break;
             case ENTER:
                 it->press(*it);
@@ -75,23 +81,23 @@ public:
 
     mainMenu():startGame("Start Game",
                          {150,20,100,80},
-                         [](button& i){i.Color = {255, 255, 255, 255};},
                          [](button& i){i.Color = {100, 240, 100, 240};},
+                         [](button& i){i.Color = {255, 255, 255, 255};},
                          [](button& i){}),
                setting  ("Setting",
-                         {150,100,100,80},
-                         [](button& i){i.Color = {255, 255, 255, 255};},
+                         {150,180,100,80},
                          [](button& i){i.Color = {100, 240, 100, 240};},
+                         [](button& i){i.Color = {255, 255, 255, 255};},
                          [](button& i){}),
                exit     ("Exit",
-                         {150,180,100,80},
-                         [](button& i){i.Color = {255, 255, 255, 255};},
-                         [](button& i){i.Color = {100, 240, 100, 240};},
-                         [](button& i){}),
-               chooseLvl("Choose Lvl",
                          {150,260,100,80},
-                         [](button& i){i.Color = {255, 255, 255, 255};},
                          [](button& i){i.Color = {100, 240, 100, 240};},
+                         [](button& i){i.Color = {255, 255, 255, 255};},
+                         [](button& i){std::cout<<"exit press"<<std::endl;}),
+               chooseLvl("Choose Lvl",
+                         {150,100,100,80},
+                         [](button& i){i.Color = {100, 240, 100, 240};},
+                         [](button& i){i.Color = {255, 255, 255, 255};},
                          [](button& i){}){}
 };
 

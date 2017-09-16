@@ -4,12 +4,13 @@
 #include <SDL_render.h>
 #include <functional>
 
-//GOF prototype
+//GOF prototype with in code discription
 class gameObject{
 private:
+
+public:
     //UI
     SDL_Texture *tex;
-public:
     int GType;
     struct {
         int x;

@@ -113,10 +113,10 @@ void gameField::createMessageOnTopBar(std::string message) {
     SDL_RenderCopy(ren, Message, NULL, &Message_rect);
 }
 
-void gameField::placeObj(gameObject *obj,const int &x,const int &y){
-    field[x][y] = obj;
-    obj->position.x=x;
-    obj->position.y=y;
+void gameField::placeObj(gameObject& obj, const int& x, const int& y){
+    field[x][y] = &obj;
+    obj.position.x=x;
+    obj.position.y=y;
 }
 
 void gameField::addObjToGenerationPool(gameObject *obj){
