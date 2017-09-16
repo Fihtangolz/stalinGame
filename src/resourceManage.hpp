@@ -2,6 +2,10 @@
 #define __RESOURCE_MANAGE_H__
 #include <SDL.h>
 #include <SDL_events.h>
+#include <vector>
+#include <string>
+#include <iostream>
+
 
 class resourceManager {
 private:

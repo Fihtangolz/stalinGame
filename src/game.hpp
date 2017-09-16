@@ -9,6 +9,7 @@
 #include "resourceManage.hpp"
 #include "gameField.hpp"
 #include "keyboardHandler.hpp"
+#include <SDL2/SDL_ttf.h>
 
 class game{
 private:
@@ -22,7 +23,7 @@ public:
     keyboardHandler keyHandler;
     game();
     ~game();
-};
+}G;
 
 game::game()
 {
@@ -44,6 +45,8 @@ game::game()
     }
     resManager.ren = ren;
     gField.ren = ren;
+    TTF_Init();
+    std::cout << "Game instanse was created" << std::endl;
 }
 
 game::~game(){
@@ -51,4 +54,4 @@ game::~game(){
     SDL_DestroyWindow(win);
     SDL_Quit();
 }
-#endif //GAME_GAME_H
+#endif

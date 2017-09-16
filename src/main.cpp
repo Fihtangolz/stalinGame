@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <SDL2/SDL_ttf.h>
 #include "game.hpp"
-
+#include "screenManager.h"
 
 //MinGW resolve trouble
 namespace patch
@@ -19,6 +19,7 @@ namespace patch
 		return stm.str() ;
 	}
 }
+/*
 void func() {
     std::fstream gResult("gResult.txt",std::ios::in | std::ios::out | std::ios::app);
     gResult<<std::setw(8)<<std::setfill('0')<<patch::to_string(tick / 100)<<std::setw(8)<<std::setfill('0')<<patch::to_string(score)<<std::endl;
@@ -58,11 +59,12 @@ for (auto &i:rTbl)
 	SDL_RenderCopy(G.ren, Message, NULL, &Message_rect);
 	p++;
 }
-}//test git
+}*/
 
 int main(int argc, char *argv[]) {
-	game G;
-	SDL_Texture* tex1 = G.resManager.createTextureFromBMP("img/grass.bmp");
+    mainMenu L;
+    L.gameLoop();
+    SDL_Texture* tex1 = G.resManager.createTextureFromBMP("img/grass.bmp");
 	SDL_Texture* tex2 = G.resManager.createTextureFromBMP("img/clock.bmp");
 	SDL_Texture* tex3 = G.resManager.createTextureFromBMP("img/hero.bmp");
 	SDL_Texture* tex4 = G.resManager.createTextureFromBMP("img/mushroom.bmp");
@@ -80,45 +82,39 @@ int main(int argc, char *argv[]) {
 	gameObject  clock{clockT,tex2};
 	gameObject  mushroom{mushroomT,tex4};
 
-	G.gField.placeObj(&hero,0,0);
+	G.gField.placeObj(hero,0,0);
 
-    bomb.onAnotherObjEnterOnCell=[&gameOver](gameObject &obj)
-	{
-		if (obj.GType == heroT)
-		{
+    bomb.onAnotherObjEnterOnCell=[&gameOver](gameObject &obj){
+		if (obj.GType == heroT){
 			gameOver = true;
 		}
 	};
 	clock.onAnotherObjEnterOnCell=[&tick](gameObject &obj){
-		if (obj.GType == heroT)
-		{
+		if (obj.GType == heroT){
 			tick += 10 * 100;
 		}
 	};
-	mushroom.onAnotherObjEnterOnCell=[&score](gameObject &obj)
-	{
+	mushroom.onAnotherObjEnterOnCell=[&score](gameObject &obj){
 		score += 12;
-
-	};
+    };
 
 	G.gField.addObjToGenerationPool(&bomb);
 	G.gField.addObjToGenerationPool(&clock);
 	G.gField.addObjToGenerationPool(&mushroom);
 
-	G.keyHandler.setObjForControll(&hero);
-for (; tick > 0 && !gameOver; --tick)
-{
-	SDL_RenderClear(G.ren);
-	G.gField.render();
-	G.keyHandler.pollEvent(G.gField);
-	if(tick%100==0){
-        std::cout<<tick%100<<std::endl;
-        G.gField.generateObjectsOnMap();
-	}
-	G.gField.createMessageOnTopBar("time: " + patch::to_string(tick / 100) + " score: " + patch::to_string(score));
-	SDL_RenderPresent(G.ren);
-	SDL_Delay(1);
+	//G.keyHandler.setObjForControll(&hero);
+
+    for (; tick > 0 && !gameOver; --tick)
+    {
+	    SDL_RenderClear(G.ren);
+	    G.gField.render();
+	    G.keyHandler.pollEvent();
+	    if(tick%100==0){
+            G.gField.generateObjectsOnMap();
+	    }
+	    G.gField.createMessageOnTopBar("time: " + patch::to_string(tick / 100) + " score: " + patch::to_string(score));
+	    SDL_RenderPresent(G.ren);
+        //SDL_Delay(1);
+    }
 }
 
-	return EXIT_SUCCESS;
-}
