@@ -1,4 +1,15 @@
 /Applications/CLion.app/Contents/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -D CMAKE_C_COMPILER=/usr/bin/gcc -D CMAKE_CXX_COMPILER=g++ -G "CodeBlocks - Unix Makefiles" /Users/dns/Documents/StalinGame
+CMake Warning at /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.8/Modules/Platform/Darwin-Initialize.cmake:121 (message):
+  Ignoring CMAKE_OSX_SYSROOT value:
+
+   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk
+
+  because the directory does not exist.
+Call Stack (most recent call first):
+  /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.8/Modules/CMakeSystemSpecificInitialize.cmake:8 (include)
+  CMakeLists.txt:2 (project)
+
+
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/dns/Documents/StalinGame/cmake-build-debug

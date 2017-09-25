@@ -8,6 +8,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "game.hpp"
 #include "screenManager.h"
+#include "timers.hpp"
 
 //MinGW resolve trouble
 namespace patch
@@ -64,57 +65,88 @@ for (auto &i:rTbl)
 int main(int argc, char *argv[]) {
     mainMenu L;
     L.gameLoop();
-    SDL_Texture* tex1 = G.resManager.createTextureFromBMP("img/grass.bmp");
+	SDL_Texture* tex1 = G.resManager.createTextureFromBMP("img/grass.bmp");
 	SDL_Texture* tex2 = G.resManager.createTextureFromBMP("img/clock.bmp");
 	SDL_Texture* tex3 = G.resManager.createTextureFromBMP("img/hero.bmp");
 	SDL_Texture* tex4 = G.resManager.createTextureFromBMP("img/mushroom.bmp");
 	SDL_Texture* tex5 = G.resManager.createTextureFromBMP("img/bomb.bmp");
+	SDL_Texture* tex6 = G.resManager.createTextureFromBMP("img/bomb.bmp");
+	SDL_Texture* tex7 = G.resManager.createTextureFromBMP("img/bomb.bmp");
 
 	G.gField.ground = tex1;
 
-	enum gameObjectType{heroT,bombT,clockT,mushroomT};
+	enum gameObjectType{heroT,doorT,clockT,mushroomT,littleCheeseT,bigCheeseT};
 
 	int score=0;
 	bool gameOver = false;
 	int tick = 10000;
+	bool timeRun = true;
 	gameObject  hero(heroT,tex3);
-	gameObject  bomb{bombT,tex5};
+	gameObject  door{doorT,tex5};
 	gameObject  clock{clockT,tex2};
 	gameObject  mushroom{mushroomT,tex4};
+	gameObject  littleCheese{littleCheeseT,tex6};
+	gameObject  bigCheese{bigCheeseT,tex7};
 
 	G.gField.placeObj(hero,0,0);
 
-    bomb.onAnotherObjEnterOnCell=[&gameOver](gameObject &obj){
+    door.onAnotherObjEnterOnCell=[&gameOver](gameObject &obj){
 		if (obj.GType == heroT){
 			gameOver = true;
 		}
 	};
-	clock.onAnotherObjEnterOnCell=[&tick](gameObject &obj){
+	//TODO заморозка времени сделанна через срань колоду, но лучше так чем никак
+	std::mutex mut;
+	clock.onAnotherObjEnterOnCell=[&timeRun,&mut](gameObject &obj){
 		if (obj.GType == heroT){
-			tick += 10 * 100;
+			timeRun = false;
+			//Предотвращаем игры со временем, чет рик и морти вспомнились со своим "не играй со временем сука",
+			//по хорошему время фриза надо складвать, но это фитча а не баг
+			mut.lock();
+			later freezTime(1000, false, [&timeRun](){timeRun = true;});
+			mut.unlock();
 		}
 	};
-	mushroom.onAnotherObjEnterOnCell=[&score](gameObject &obj){
-		score += 12;
+	mushroom.onAnotherObjEnterOnCell=[&tick](gameObject &obj){
+		//Созданим мигатор, время жизни обозначим через тики
+		if(tick%20==0){
+			SDL_RenderClear(G.ren);
+		}
+
     };
 
-	G.gField.addObjToGenerationPool(&bomb);
+	littleCheese.onAnotherObjEnterOnCell=[&score](gameObject &obj){
+		if(obj.GType == heroT){
+			score+=10;
+		}
+	};
+
+	bigCheese.onAnotherObjEnterOnCell=[&score](gameObject &obj){
+		if(obj.GType == heroT){
+			score+=40;
+		}
+	};
+
+	G.gField.addObjToGenerationPool(&door);
 	G.gField.addObjToGenerationPool(&clock);
 	G.gField.addObjToGenerationPool(&mushroom);
+	G.gField.addObjToGenerationPool(&bigCheese);
+	G.gField.addObjToGenerationPool(&littleCheese);
 
-	//G.keyHandler.setObjForControll(&hero);
-
-    for (; tick > 0 && !gameOver; --tick)
+	while(tick > 0 && !gameOver) //TODO вопрос с внутри игровым временем хорош но достоин отдельной статьи
     {
 	    SDL_RenderClear(G.ren);
 	    G.gField.render();
 	    G.keyHandler.pollEvent();
+		//Сдесь происходит вызов функции объекта
 	    if(tick%100==0){
             G.gField.generateObjectsOnMap();
 	    }
 	    G.gField.createMessageOnTopBar("time: " + patch::to_string(tick / 100) + " score: " + patch::to_string(score));
 	    SDL_RenderPresent(G.ren);
-        //SDL_Delay(1);
+        if(timeRun){
+			--tick;
+		}
     }
 }
 

@@ -2,7 +2,6 @@
 #define GAME_SCREENMANAGER_H
 
 #include <functional>
-#include <search.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL_rect.h>
 #include <array>
@@ -32,15 +31,14 @@ public:
         SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Sans, text.c_str(), Color);
         SDL_Texture* Message = SDL_CreateTextureFromSurface(G.ren, surfaceMessage);
 
-        SDL_RenderCopy(G.ren, Message, NULL, &Message_rect);
+        SDL_RenderCopy(G.ren, Message, nullptr, &Message_rect);
     }
 };
 
-class mainMenu:delegateWASDControll{
-    button startGame, chooseLvl, setting,exit;
-    std::array<button,4> K{startGame, chooseLvl, setting, exit};
 
-
+class chooseLvl:delegateWASDControll{
+    button lvl1, lvl2, lvl3, backward;
+    std::array<button,4> K{lvl1, lvl2, lvl3, backward};
 public:
     void gameLoop(){
         G.keyHandler.delegate = this;
@@ -53,23 +51,102 @@ public:
             SDL_RenderPresent(G.ren);
         }
     }
-
 private:
-    std::array<button,4>::iterator it = K.begin();
+    std::array<button,4>::iterator it;
 public:
     void moveOdj(const direction f) { //TODO rename
         switch(f){
+            case DOWN:
+                if(it!=K.end()-1){
+                    it->unselect(*it);
+                    ++it;
+                    it->select(*it);
+                }
+                break;
             case UP:
-                if(it!=K.end()){
+                if(it!=K.begin()) {
                     it->unselect(*it);
                     --it;
                     it->select(*it);
                 }
                 break;
+            case ENTER:
+                it->press(*it);
+                break;
+        }
+    }
+
+    chooseLvl():lvl1("1",
+                     {150,20,100,80},
+                     [](button& i){i.Color = {100, 240, 100, 240};},
+                     [](button& i){i.Color = {255, 255, 255, 255};},
+                     [](button& i){
+                         std::cout<< "enter lvl1 button" << std::endl;
+                     }),
+                lvl2("2",
+                     {150,100,100,80},
+                     [](button& i){i.Color = {100, 240, 100, 240};},
+                     [](button& i){i.Color = {255, 255, 255, 255};},
+                     [](button& i){
+                         std::cout<< "enter lvl2 button" << std::endl;
+                     }),
+                lvl3("3",
+                     {150,180,100,80},
+                     [](button& i){i.Color = {100, 240, 100, 240};},
+                     [](button& i){i.Color = {255, 255, 255, 255};},
+                     [](button& i){
+                         std::cout<< "enter lvl3 button" << std::endl;
+                     }),
+                backward("backward",
+                         {150,260,100,80},
+                         [](button& i){i.Color = {100, 240, 100, 240};},
+                         [](button& i){i.Color = {255, 255, 255, 255};},
+                         [](button& i){
+                             std::cout<< "enter backward button" << std::endl;
+                             //TODO пока не работает
+                         })
+    {
+        it=K.begin();
+        it->Color={100, 240, 100, 240};
+    }
+};
+
+class mainMenu:delegateWASDControll{
+private:
+    button startGame, chooseLvl, setting,exit;
+    std::array<button,4> K{startGame, chooseLvl, setting, exit};
+
+    bool showMenu = true; //TODO еше один костыль
+public:
+    void gameLoop(){
+        G.keyHandler.delegate = this;
+        while(showMenu){ //TODO часть перенести в очередь выполнения
+            SDL_RenderClear(G.ren);
+            for(auto &i : K){
+                i.render();
+            }
+            G.keyHandler.pollEvent();
+            SDL_RenderPresent(G.ren);
+        }
+    }
+
+private:
+    std::array<button,4>::iterator it;
+public:
+    void moveOdj(const direction f) { //TODO rename. По хорошему делегат должен объявлять приватные свойства
+                                        // (хотя наверное и публичные) но тут точно косяк
+        switch(f){
             case DOWN:
-                if(it!=K.begin()) {
+                if(it!=K.end()-1){
                     it->unselect(*it);
                     ++it;
+                    it->select(*it);
+                }
+                break;
+            case UP:
+                if(it!=K.begin()) {
+                    it->unselect(*it);
+                    --it;
                     it->select(*it);
                 }
                 break;
@@ -83,7 +160,9 @@ public:
                          {150,20,100,80},
                          [](button& i){i.Color = {100, 240, 100, 240};},
                          [](button& i){i.Color = {255, 255, 255, 255};},
-                         [](button& i){}),
+                         [&](button& i){
+                             this->showMenu = false; //TODO завершаеи цикл и начинаем игру, еще одна лыжа в копилку овна
+                         }),
                setting  ("Setting",
                          {150,180,100,80},
                          [](button& i){i.Color = {100, 240, 100, 240};},
@@ -98,28 +177,17 @@ public:
                          {150,100,100,80},
                          [](button& i){i.Color = {100, 240, 100, 240};},
                          [](button& i){i.Color = {255, 255, 255, 255};},
-                         [](button& i){}){}
+                         [](button& i){
+                             std::cout<< "enter chooseLvl button" << std::endl;
+                             class chooseLvl f;
+                             f.gameLoop();
+                         })
+    {
+        //init first active menu item
+        it=K.begin();
+        it->Color={100, 240, 100, 240};
+    }
+    ~mainMenu(){std::cout<< "enter destructor button" << std::endl;}
 };
-
-/*
-class chooseLvl{
-
-    std::vector<level> P;
-    chooseLvl(){
-
-    }
-    render(){
-    /for (int i = 0; i < gridDimensions.w; i++) {
-        for (int j = 0; j < gridDimensions.h; j++) {
-            SDL_Rect pos;
-            pos.x = i*tileSize;
-            pos.y = j*tileSize;
-            pos.w = tileSize;
-            pos.h = tileSize;
-            SDL_RenderCopy(ren, ground, NULL, &pos);
-        }
-       }
-    }
-}; */
 
 #endif //GAME_SCREENMANAGER_H

@@ -111,6 +111,9 @@
 		<Unit filename="/Users/dns/Documents/StalinGame/src/screenManager.h">
 			<Option target="Game"/>
 		</Unit>
+		<Unit filename="/Users/dns/Documents/StalinGame/src/timers.hpp">
+			<Option target="Game"/>
+		</Unit>
 		<Unit filename="/Users/dns/Documents/StalinGame/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
