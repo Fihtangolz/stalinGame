@@ -93,6 +93,9 @@
 		<Unit filename="/Users/dns/Documents/StalinGame/src/gameField.hpp">
 			<Option target="Game"/>
 		</Unit>
+		<Unit filename="/Users/dns/Documents/StalinGame/src/gameObject.cpp">
+			<Option target="Game"/>
+		</Unit>
 		<Unit filename="/Users/dns/Documents/StalinGame/src/gameObject.hpp">
 			<Option target="Game"/>
 		</Unit>

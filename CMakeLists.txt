@@ -16,7 +16,7 @@ file(GLOB source ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/src/*.hpp)
 #file(GLOB headers2 ${PROJECT_SOURCE_DIR}/include/*.h)
 
-add_executable(Game ${source} ${headers} src/screenManager.h src/timers.hpp)
+add_executable(Game ${source} ${headers} src/screenManager.h src/timers.hpp src/gameObject.cpp)
 
 
 target_link_libraries(Game SDL2 SDL2_ttf)

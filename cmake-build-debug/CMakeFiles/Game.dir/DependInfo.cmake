@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/dns/Documents/StalinGame/src/gameField.cpp" "/Users/dns/Documents/StalinGame/cmake-build-debug/CMakeFiles/Game.dir/src/gameField.cpp.o"
+  "/Users/dns/Documents/StalinGame/src/gameObject.cpp" "/Users/dns/Documents/StalinGame/cmake-build-debug/CMakeFiles/Game.dir/src/gameObject.cpp.o"
   "/Users/dns/Documents/StalinGame/src/keyboardHandler.cpp" "/Users/dns/Documents/StalinGame/cmake-build-debug/CMakeFiles/Game.dir/src/keyboardHandler.cpp.o"
   "/Users/dns/Documents/StalinGame/src/main.cpp" "/Users/dns/Documents/StalinGame/cmake-build-debug/CMakeFiles/Game.dir/src/main.cpp.o"
   )

@@ -17,8 +17,7 @@ public:
 };
 
 resourceManager::~resourceManager(){
-    for(auto *i:LTexturs)
-    {
+    for(auto *i:LTexturs) {
         SDL_DestroyTexture(i);
     }
 }

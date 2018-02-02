@@ -6,7 +6,9 @@
 #include <vector>
 #include "gameObject.hpp"
 
-class gameField {
+class gameObject;
+
+class gameField{
 private:
     struct {
         int w=10;
@@ -24,7 +26,7 @@ public:
     SDL_Texture *ground;
     void createMessageOnTopBar( std::string message);
     void render();
-    void moveOdj(gameObject *obj, direction f);
+    void moveOdj(gameObject *obj, const direction f);
     void generateObjectsOnMap();
     void addObjToGenerationPool(gameObject *obj);
     void placeObj(gameObject &obj, const int &x, const int &y);

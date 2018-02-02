@@ -2,8 +2,6 @@
 #define __KEYBOARDHANDLER_H__
 #include <SDL.h>
 #include <SDL_events.h>
-#include <gameField.hpp> //TODO
-#include "gameObject.hpp"
 
 class delegateWASDControll {
 public:

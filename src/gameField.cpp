@@ -1,10 +1,8 @@
-#include <gameField.hpp>
-#include "gameObject.hpp"
-#include <SDL2/SDL_ttf.h>
 #include <random>
-#include <iostream>
+#include <SDL2/SDL_ttf.h>
+#include "gameField.hpp"
 
-void gameField::moveOdj(gameObject *obj, direction f){
+void gameField::moveOdj(gameObject *obj, const direction f){
    switch (f) {
         case UP:
             if(obj->position.y-1>=0)

@@ -150,6 +150,33 @@ src/gameField.cpp.s:
 	$(MAKE) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/src/gameField.cpp.s
 .PHONY : src/gameField.cpp.s
 
+src/gameObject.o: src/gameObject.cpp.o
+
+.PHONY : src/gameObject.o
+
+# target to build an object file
+src/gameObject.cpp.o:
+	$(MAKE) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/src/gameObject.cpp.o
+.PHONY : src/gameObject.cpp.o
+
+src/gameObject.i: src/gameObject.cpp.i
+
+.PHONY : src/gameObject.i
+
+# target to preprocess a source file
+src/gameObject.cpp.i:
+	$(MAKE) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/src/gameObject.cpp.i
+.PHONY : src/gameObject.cpp.i
+
+src/gameObject.s: src/gameObject.cpp.s
+
+.PHONY : src/gameObject.s
+
+# target to generate assembly for a file
+src/gameObject.cpp.s:
+	$(MAKE) -f CMakeFiles/Game.dir/build.make CMakeFiles/Game.dir/src/gameObject.cpp.s
+.PHONY : src/gameObject.cpp.s
+
 src/keyboardHandler.o: src/keyboardHandler.cpp.o
 
 .PHONY : src/keyboardHandler.o
@@ -216,6 +243,9 @@ help:
 	@echo "... src/gameField.o"
 	@echo "... src/gameField.i"
 	@echo "... src/gameField.s"
+	@echo "... src/gameObject.o"
+	@echo "... src/gameObject.i"
+	@echo "... src/gameObject.s"
 	@echo "... src/keyboardHandler.o"
 	@echo "... src/keyboardHandler.i"
 	@echo "... src/keyboardHandler.s"

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "keyboardHandler.hpp"
 
 void keyboardHandler::pollEvent() {

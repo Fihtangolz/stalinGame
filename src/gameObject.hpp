@@ -5,14 +5,18 @@
 
 #include <SDL_render.h>
 #include <functional>
-#include "screenManager.h"
 #include "keyboardHandler.hpp"
-#include "game.hpp"
+#include "gameField.hpp"
+#include "gameObject.hpp"
+
+class gameField;
 
 //GOF prototype with in code discription
-class gameObject : delegateWASDControll { //TODO наследование от делегата управление тоже не хорошо и костыль,
-                                         // но мы пляшем дальше
+class gameObject: public delegateWASDControll{ //TODO не красивое решение со стороны архитектуры, ну что тут поделаешь
 public:
+    gameField* container;
+    void moveOdj(const direction f);
+    ////////////////////////
     //UI
     SDL_Texture *tex;
     int GType;
@@ -20,12 +24,11 @@ public:
         int x;
         int y;
     }position;
-    gameObject(const int &tp,SDL_Texture* txr){
-        GType = tp;
-        tex = txr;
-    };
+    gameObject(const int &tp,SDL_Texture* txr);
     std::function<void(gameObject&)> onAnotherObjEnterOnCell;
 };
+
+
 
 #endif //GAME_GAMEOBJECT_H_
 

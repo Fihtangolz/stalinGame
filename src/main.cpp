@@ -81,6 +81,7 @@ int main(int argc, char *argv[]) {
 	bool gameOver = false;
 	int tick = 10000;
 	bool timeRun = true;
+
 	gameObject  hero(heroT,tex3);
 	gameObject  door{doorT,tex5};
 	gameObject  clock{clockT,tex2};
@@ -122,6 +123,7 @@ int main(int argc, char *argv[]) {
 	};
 
 	bigCheese.onAnotherObjEnterOnCell=[&score](gameObject &obj){
+
 		if(obj.GType == heroT){
 			score+=40;
 		}
@@ -132,6 +134,9 @@ int main(int argc, char *argv[]) {
 	G.gField.addObjToGenerationPool(&mushroom);
 	G.gField.addObjToGenerationPool(&bigCheese);
 	G.gField.addObjToGenerationPool(&littleCheese);
+
+	hero.container = &G.gField;
+	G.keyHandler.delegate= static_cast<delegateWASDControll*>(&hero);
 
 	while(tick > 0 && !gameOver) //TODO вопрос с внутри игровым временем хорош но достоин отдельной статьи
     {
